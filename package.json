@@ -1,21 +1,26 @@
 {
   "name": "native_rt",
   "version": "1.0.0",
-  "main": "./build/Release/native_rt",
+  "main": "index.js",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "preinstall": "npm install node-pre-gyp",
+    "install": "node-pre-gyp install --fallback-to-build",
+    "clean": "node-pre-gyp clean",
+    "build": "node-pre-gyp build",
+    "package": "node-pre-gyp package"  
+  },
   "dependencies": {
     "node-pre-gyp": "^0.11.0"
   },
   "binary": {
     "module_name": "native_rt",
     "module_path": "./lib/binding/{configuration}/{node_abi}-{platform}-{arch}/",
-    "remote_path": "./{module_name}/v{version}/{configuration}/",
+    "remote_path": "{version}",
     "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{arch}.tar.gz",
-    "host": "https://nodeaddons.s3-us-west-2.amazonaws.com"
+    "host": "https://github.com",
+    "remote_path": "/stormymcstorm/node-pre-gyp-example/releases/download/v{version}"
   },
-  "scripts": {
-    "preinstall": "npm install node-pre-gyp",
-    "install": "node-pre-gyp install --fallback-to-build"
-  }
+  "author": "Carson Storm <stormymcstorm@gmail.com>"
 }
